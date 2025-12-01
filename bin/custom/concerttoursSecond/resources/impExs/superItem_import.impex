@@ -1,0 +1,3 @@
+INSERT_UPDATE SuperItem; code[unique = true]; band(code); musicType(code); nameMap; stringList
+                       ; A001 ; SektorGaza ; Rock ; "author1->It;author2->They" ; listItem1,listItem2
+                       ; A002 ; KiSH ; Jazz ; "author1->He;author2->She" ; listItem0,listItem1

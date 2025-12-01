@@ -1,0 +1,7 @@
+INSERT_UPDATE Band2; code[unique = true]; name
+                   ; SektorGaza         ; Sektor Gaza
+                   ; KiSH               ; KiSH
+
+INSERT_UPDATE MusicType2; code[unique = true]
+                        ; Rock
+                        ; Jazz

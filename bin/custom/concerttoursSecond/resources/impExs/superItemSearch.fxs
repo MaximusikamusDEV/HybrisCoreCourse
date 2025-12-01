@@ -1,0 +1,2 @@
+SELECT {pk}, {code}, {band}, {musicType}, {nameMap}, {stringList}
+FROM {SuperItem}
