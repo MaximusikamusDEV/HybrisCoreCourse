@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <!--Created collection-->
+    <collectiontypes>
+        <collectiontype code="StringList" elementtype="java.lang.String" type="collection"/>
+    </collectiontypes>
+
+    <enumtypes>
+        <!--dynamic-->
+        <enumtype code="MusicType2" generate="true" autocreate="true" dynamic="true">
+        </enumtype>
+
+        <!--non-dynamic-->
+        <enumtype code="ConcertType2" generate="true" autocreate="true" dynamic="false">
+            <value code="openair"/>
+            <value code="indoor"/>
+        </enumtype>
+    </enumtypes>
+
+    <!--Created map-->
+    <maptypes>
+        <maptype code="NameMapType" argumenttype="java.lang.String" returntype="java.lang.String"/>
+    </maptypes>
+
+    <!--Relations-->
+    <relations>
+        <!--1-m-->
+        <relation code="Product2RockBand2" localized="false" generate="false" autocreate="true">
+            <sourceElement qualifier="tours" type="Product2" collectiontype="set">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </sourceElement>
+            <targetElement qualifier="band" type="Band2" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </targetElement>
+        </relation>
+
+        <!--m-n-->
+        <relation code="Band2MusicType2" localized="false" autocreate="true" generate="false">
+            <deployment table="Band2MusicType2" typecode="30369"/>
+            <sourceElement type="Band2" qualifier="bands" collectiontype="set" cardinality="many" ordered="false">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </sourceElement>
+            <targetElement type="MusicType2" cardinality="many" qualifier="types">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </targetElement>
+        </relation>
+
+        <!--Relation for superItem 1-m-->
+        <relation code="SuperItem2ConcertType" localized="false">
+            <sourceElement type="SuperItem" qualifier="superItem" cardinality="one" ordered="false">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </sourceElement>
+            <targetElement type="ConcertType2" qualifier="types" cardinality="many" ordered="false">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </targetElement>
+        </relation>
+    </relations>
+
+    <!--There items-->
+    <itemtypes>
+        <!--Item with collection-->
+        <itemtype code="Author" generate="true" autocreate="true">
+            <deployment table="Author" typecode="10107"/>
+            <attributes>
+                <attribute qualifier="tracks" type="StringList">
+                    <description>All tracks of this author</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!--With map-->
+        <itemtype code="Track" generate="true" autocreate="true">
+            <deployment table="Track" typecode="10106"/>
+            <attributes>
+                <attribute qualifier="nameMap" type="NameMapType">
+                    <description>Map defines author - track</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Product2" extends="GenericItem" generate="true" autocreate="true">
+            <deployment table="Product2" typecode="10104"/>
+            <attributes>
+                <attribute qualifier="hashtag" type="java.lang.String">
+                    <description>hashtag for sc media</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Band2" generate="true" autocreate="true">
+            <deployment table="Bands2" typecode="10105"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>code of band</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <description>name of band</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="history" type="java.lang.String">
+                    <description>history of band</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="albumSales" type="java.lang.Long">
+                    <description>amount of sales</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Venue2" generate="true" autocreate="true">
+            <deployment table="Venue2" typecode="10102"/>
+            <attributes>
+                <attribute qualifier="name" type="java.lang.String">
+                    <description>name of the street</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!--1-1 relation Venue - Concert-->
+
+        <itemtype code="Concert2" generate="true" extends="VariantProduct" autocreate="true">
+            <attributes>
+                <attribute qualifier="venue" type="Venue2">
+                    <description>one to one Concert-Venue</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="date" type="java.util.Date">
+                    <description>date of concert</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="concertType" type="ConcertType2">
+                    <description>type of concert (indoors or open air)</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+
+        <!--Item with all possible attributes types-->
+        <itemtype code="SuperItem" extends="GenericItem" generate="true" autocreate="true">
+            <deployment table="SuperItem" typecode="20103"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>code of superItem</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="band" type="Band2">
+                    <description>Just a band which we created before</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="musicType" type="MusicType2">
+                    <description>Music type we created before</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="stringList" type="StringList">
+                    <description>List of some strings</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="nameMap" type="NameMapType">
+                    <description>map of name to name</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+    </itemtypes>
+</items>
