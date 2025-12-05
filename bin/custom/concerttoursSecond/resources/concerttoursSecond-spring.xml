@@ -82,5 +82,8 @@
         <property name="mediaService" ref="mediaService"/>
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
-			
+
+    <bean id="ConcerttoursSecondCustomSetup" class="concerttours.setup.Concerttours2CustomSetup">
+        <property name="importService" ref="importService"/>
+    </bean>
 </beans>
