@@ -83,7 +83,12 @@
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
 
-    <bean id="ConcerttoursSecondCustomSetup" class="concerttours.setup.Concerttours2CustomSetup">
+    <bean id="concerttoursSecondCustomSetup" class="concerttours.setup.Concerttours2CustomSetup">
         <property name="importService" ref="importService"/>
     </bean>
+
+    <bean id="trainingProductService"
+          class="concerttours.service.impl.DefaultTrainingProductService"
+          parent="defaultProductService"/>
+    <alias alias="productService" name="trainingProductService"/>
 </beans>

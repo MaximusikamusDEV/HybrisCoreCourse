@@ -7,17 +7,7 @@
 /config/**
 !/config/local.properties
 !/config/localextesions.xml
-
 /bin/custom/**/web/**
-!/bin/custom/**/web/src/
-/bin/custom/**/web/src/**
-!/bin/custom/**/web/src/**/controller/
-!/bin/custom/**/web/webroot/
-/bin/custom/**/web/webroot/**
-!/bin/custom/**/web/webroot/WEB-INF/
-/bin/custom/**/web/webroot/WEB-INF/**
-!/bin/custom/**/web/webroot/WEB-INF/views/
-
 /bin/custom/**/gensrc/**
 /bin/custom/**/testsrc/**
 
