@@ -59,4 +59,9 @@
         <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 
+    <bean name="/facadeProduct" class="concerttours.controller.FacadeProductController">
+        <property name="product2Facade" ref="defaultProduct2Facade"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+    </bean>
+
 </beans>

@@ -8,6 +8,14 @@
 
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
 
+
+    <bean class="concerttours.data.Product2Data">
+        <description>Data object for a Product2</description>
+        <property name="id" type="String"/>
+        <property name="catalogVersion" type="String"/>
+        <property name="finalHashtag" type="String"/>
+        <property name="name" type="String"/>
+    </bean>
 	<!--
 		Example Data POJO
 	

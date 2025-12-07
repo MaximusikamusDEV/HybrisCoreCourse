@@ -91,4 +91,9 @@
           class="concerttours.service.impl.DefaultTrainingProductService"
           parent="defaultProductService"/>
     <alias alias="productService" name="trainingProductService"/>
+
+    <bean id="defaultProduct2Facade"
+          class="concerttours.facade.impl.DefaultProduct2Facade">
+        <property name="trainingProductService" ref="trainingProductService"/>
+    </bean>
 </beans>
