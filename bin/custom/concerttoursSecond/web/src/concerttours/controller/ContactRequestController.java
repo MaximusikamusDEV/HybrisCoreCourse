@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.training.model.ContactRequestModel;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 
 @Controller
 public class ContactRequestController {
@@ -43,6 +46,7 @@ public class ContactRequestController {
             ContactRequestModel contactRequestModel = modelService.create(ContactRequestModel.class);
             contactRequestModel.setSender(newSender);
             contactRequestModel.setMessage(newMessage);
+            contactRequestModel.setDate(new Date());
             modelService.save(contactRequestModel);
             model.addAttribute("contactRequest", contactRequestModel);
         }

@@ -64,4 +64,10 @@
         <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 
+    <bean name="/populatorProduct" class="concerttours.controller.ProductWithPopulatorController">
+        <property name="trainingProductService" ref="trainingProductService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="customProductPopulator" ref="customProductPopulator"/>
+    </bean>
+
 </beans>

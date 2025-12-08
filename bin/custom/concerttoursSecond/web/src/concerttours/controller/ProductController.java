@@ -11,23 +11,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Collections;
 
 @Controller
 public class ProductController {
     private final TrainingProductService productService;
     private final CatalogVersionService catalogVersionService;
-    private final SearchRestrictionService searchRestrictionService;
 
-    public ProductController(TrainingProductService productService, CatalogVersionService catalogVersionService, SearchRestrictionService searchRestrictionService) {
+    public ProductController(TrainingProductService productService, CatalogVersionService catalogVersionService) {
         this.productService = productService;
         this.catalogVersionService = catalogVersionService;
-        this.searchRestrictionService = searchRestrictionService;
     }
 
     @GetMapping("/product")
     public String getProductPage(@RequestParam String code, Model model) {
-        if(code != null) {
+        if (code != null) {
             try {
                 CatalogVersionModel catalogVersionModel = catalogVersionService.getCatalogVersion("concertCatalog",
                         "Online");
@@ -37,7 +36,7 @@ public class ProductController {
                 CustomProductModel productModel = (CustomProductModel) productService.getProductForCode(catalogVersionModel, code);
 
                 model.addAttribute("product", productModel);
-            }catch (UnknownIdentifierException e) {
+            } catch (UnknownIdentifierException e) {
                 model.addAttribute("error", "Product code not found");
             }
         }

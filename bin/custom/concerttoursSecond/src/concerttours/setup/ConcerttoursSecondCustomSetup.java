@@ -26,10 +26,21 @@ public class ConcerttoursSecondCustomSetup {
     }
 
     @SystemSetup(type = SystemSetup.Type.ESSENTIAL)
-    public boolean addMyProjectData(){
+    public boolean addEssentialData(){
         LOG.info("Starting custom essential data loading for the ConcerttoursSecond extension");
         impexImport("/impex/concerttoursSecond-productAndCatalog.impex");
         LOG.info("Custom essential data loading for the ConcerttoursSecond extension completed.");
+        return true;
+    }
+
+    @SystemSetup(type = SystemSetup.Type.PROJECT)
+    public boolean addMyProjectData(){
+        LOG.info("Starting custom project data loading for the ConcerttoursSecond extension");
+        impexImport("/impex/concerttoursSecond-bandAndMusicType.impex");
+        impexImport("/impex/concerttoursSecond-importTriggerForCustomSession.impex");
+        impexImport("/impex/concerttoursSecond-superItem.impex");
+        impexImport("/impex/concerttoursSecond-customSessionWithToken.impex");
+        LOG.info("Custom project data loading for the ConcerttoursSecond extension completed.");
         return true;
     }
 

@@ -1,0 +1,13 @@
+import de.hybris.platform.servicelayer.search.*
+import de.hybris.platform.catalog.enums.ArticleApprovalStatus
+
+searchService = spring.getBean("flexibleSearchService")
+modelService = spring.getBean("modelService")
+query = new FlexibleSearchQuery("Select {pk} from {Concert}");
+searchService.search(query).getResult().each {
+    if (it.daysUntil < 1)
+    {
+        it.approvalStatus = ArticleApprovalStatus.CHECK
+    }
+    modelService.saveAll()
+}

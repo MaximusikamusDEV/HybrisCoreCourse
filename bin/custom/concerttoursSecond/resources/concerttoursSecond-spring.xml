@@ -96,4 +96,22 @@
           class="concerttours.facade.impl.DefaultCustomProductFacade">
         <property name="trainingProductService" ref="trainingProductService"/>
     </bean>
+
+    <bean id="senderDaysAfterSendAttributeHandler" class="concerttours.attributehandlers.SenderDaysAfterSendAttributeHandler"/>
+
+    <alias name="defaultCustomSessionService" alias="customSessionService"/>
+    <bean id="defaultCustomSessionService" class="concerttours.service.impl.DefaultCustomSessionService">
+        <property name="customSessionDao" ref="customSessionDao"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean id="customSessionTokenGenerateJob"
+          class="concerttours.jobs.CustomSessionTokenGenerateJob"
+          parent="abstractJobPerformable">
+        <property name="customSessionService" ref="customSessionService"/>
+    </bean>
+
+    <bean id="customProductPopulator"
+          class="concerttours.facade.impl.CustomProductPopulator">
+    </bean>
 </beans>

@@ -26,6 +26,9 @@ public class ConcerttoursCustomSetup {
     @SystemSetup(type = SystemSetup.Type.ESSENTIAL)
     public boolean putInMyEssentialData(){
         LOG.info("Starting custom essential data loading for the Concerttours extension");
+        impexImport("/impex/essentialdata-mediaformats.impex");
+        impexImport("/impex/essentialdata-constraints.impex");
+        impexImport("/impex/essentialdata-musictypes.impex");
         LOG.info("Custom essential data loading for the Concerttours extension completed.");
         return true;
     }
@@ -34,6 +37,8 @@ public class ConcerttoursCustomSetup {
     public boolean addMyProjectData(){
         LOG.info("Starting custom project data loading for the Concerttours extension");
         impexImport("/impex/concerttours-bands.impex");
+        impexImport("/impex/concerttours-bands-en.impex");
+        impexImport("/impex/concerttours-bands-de.impex");
         impexImport("/impex/concerttours-yBandTour.impex");
         LOG.info("Custom project data loading for the Concerttours extension completed.");
         return true;
