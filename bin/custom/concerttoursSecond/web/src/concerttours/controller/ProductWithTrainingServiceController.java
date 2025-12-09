@@ -3,7 +3,6 @@ package concerttours.controller;
 import concerttours.model.Product2Model;
 import concerttours.service.TrainingProductService;
 import de.hybris.platform.catalog.CatalogVersionService;
-import de.hybris.platform.search.restriction.SearchRestrictionService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -12,7 +11,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TrainingProductController implements Controller {
+public class ProductWithTrainingServiceController implements Controller {
     private CatalogVersionService catalogVersionService;
     private TrainingProductService trainingProductService;
 

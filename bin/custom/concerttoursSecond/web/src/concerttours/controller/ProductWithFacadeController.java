@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FacadeProductController implements Controller {
+public class ProductWithFacadeController implements Controller {
     private CatalogVersionService catalogVersionService;
     private Product2Facade product2Facade;
 

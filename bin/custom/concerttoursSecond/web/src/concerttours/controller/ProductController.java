@@ -1,6 +1,7 @@
 package concerttours.controller;
 
 import concerttours.model.Product2Model;
+import concerttours.service.TrainingProductService;
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.product.ProductService;
@@ -14,11 +15,11 @@ import java.util.Collections;
 
 @Controller
 public class ProductController {
-    private final ProductService productService;
+    private final TrainingProductService productService;
     private final CatalogVersionService catalogVersionService;
     private final SearchRestrictionService searchRestrictionService;
 
-    public ProductController(ProductService productService, CatalogVersionService catalogVersionService, SearchRestrictionService searchRestrictionService) {
+    public ProductController(TrainingProductService productService, CatalogVersionService catalogVersionService, SearchRestrictionService searchRestrictionService) {
         this.productService = productService;
         this.catalogVersionService = catalogVersionService;
         this.searchRestrictionService = searchRestrictionService;

@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public class DefaultContactRequestDao implements ContactRequestDao {
     private final FlexibleSearchService flexibleSearchService;
+    private final String QUERY_GET_CONTACT_REQ_BY_NAME = "SELECT {PK} FROM {ContactRequest} WHERE {sender} = ?sender";
 
     public DefaultContactRequestDao(FlexibleSearchService flexibleSearchService) {
         this.flexibleSearchService = flexibleSearchService;
@@ -19,8 +20,7 @@ public class DefaultContactRequestDao implements ContactRequestDao {
 
     @Override
     public List<ContactRequestModel> getContactRequestsBySender(String sender) {
-        final String queryString = "SELECT {PK} FROM {ContactRequest} WHERE {sender} = ?sender";
-        final FlexibleSearchQuery query = new FlexibleSearchQuery(queryString);
+        final FlexibleSearchQuery query = new FlexibleSearchQuery(QUERY_GET_CONTACT_REQ_BY_NAME);
         query.addQueryParameter("sender", sender);
         final SearchResult<ContactRequestModel> result = this.flexibleSearchService.search(query);
 

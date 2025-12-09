@@ -10,35 +10,23 @@ import concerttours.model.BandModel;
 @Component(value = "bandDAO")
 public class DefaultBandDAO implements BandDAO
 {
-    /**
-     * Use SAP
-     Commerce FlexibleSearchService for running queries against the database
-     */
+    private final String QUERY_GET_BANDS = "SELECT {p:" + BandModel.PK + "} FROM {" + BandModel._TYPECODE + " AS p}";
+    private final String QUERY_GET_BANDS_BY_CODE = "SELECT {p:" + BandModel.PK + "} FROM {" + BandModel._TYPECODE + " AS p} "
+            + "WHERE " + "{p:" + BandModel.CODE + "}=?code ";
     @Autowired
     private FlexibleSearchService flexibleSearchService;
-    /**
-     * Finds all Bands by performing a FlexibleSearch using the {@link FlexibleSearchService}.
-     */
+
     @Override
     public List<BandModel> findBands()
     {
-        final String queryString = //
-                "SELECT {p:" + BandModel.PK + "} "//
-                        + "FROM {" + BandModel._TYPECODE + " AS p} ";
-        final FlexibleSearchQuery query = new FlexibleSearchQuery(queryString);
+        final FlexibleSearchQuery query = new FlexibleSearchQuery(QUERY_GET_BANDS);
         return flexibleSearchService.<BandModel> search(query).getResult();
     }
-    /**
-     * Finds all Bands by given code by performing a FlexibleSearch using the {@link FlexibleSearchService}.
-     */
+
     @Override
     public List<BandModel> findBandsByCode(final String code)
     {
-        final String queryString = //
-                "SELECT {p:" + BandModel.PK + "}" //
-                        + "FROM {" + BandModel._TYPECODE + " AS p} "//
-                        + "WHERE " + "{p:" + BandModel.CODE + "}=?code ";
-        final FlexibleSearchQuery query = new FlexibleSearchQuery(queryString);
+        final FlexibleSearchQuery query = new FlexibleSearchQuery(QUERY_GET_BANDS_BY_CODE);
         query.addQueryParameter("code", code);
         return flexibleSearchService.<BandModel> search(query).getResult();
     }
