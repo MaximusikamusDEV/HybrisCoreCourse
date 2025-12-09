@@ -7,10 +7,10 @@ INSERT_UPDATE User; uid[unique = true]; groups(uid)
 INSERT_UPDATE CatalogVersion; catalog(id)[unique = true]; version[unique = true]; readPrincipals(uid)
                             ; concertCatalog            ; Online                ; admingroup,customergroup,employeegroup,anonymous
 
-INSERT_UPDATE Band2; code[unique = true]; name      ; history              ; albumSales
+INSERT_UPDATE CustomBand; code[unique = true]; name      ; history              ; albumSales
                    ; metallica          ; Metallica ; American band        ; 125000
                    ; acdc               ; ac/dc     ; Australian rock band ; 2000
 
-INSERT_UPDATE Product2; code[unique = true]; catalogVersion(catalog(id), version); name             ; hashtag; hashtag2     ; band2(code)
+INSERT_UPDATE CustomProduct; code[unique = true]; catalogVersion(catalog(id), version); name             ; hashtag; customHashtag     ; customBand(code)
                       ; Tour001            ; concertCatalog:Online               ; Metall world cup ; #metal ; #secondmetal ; metallica
                       ; Tour002            ; concertCatalog:Online               ; ac/dc            ; #rock  ; #secondrock  ; acdc

@@ -54,13 +54,13 @@
         <property name="cacheSeconds" value="1"/>
     </bean>
 
-    <bean name="/trainingProduct.html" class="concerttours.controller.ProductWithTrainingServiceController">
+    <bean name="/trainingProduct" class="concerttours.controller.ProductWithTrainingServiceController">
         <property name="trainingProductService" ref="productService"/>
         <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 
     <bean name="/facadeProduct" class="concerttours.controller.ProductWithFacadeController">
-        <property name="product2Facade" ref="defaultProduct2Facade"/>
+        <property name="customProductFacade" ref="defaultCustomProductFacade"/>
         <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 

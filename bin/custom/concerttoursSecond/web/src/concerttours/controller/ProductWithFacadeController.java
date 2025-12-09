@@ -1,7 +1,7 @@
 package concerttours.controller;
 
-import concerttours.data.Product2Data;
-import concerttours.facade.Product2Facade;
+import concerttours.data.CustomProductData;
+import concerttours.facade.CustomProductFacade;
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,15 +14,15 @@ import java.util.Map;
 
 public class ProductWithFacadeController implements Controller {
     private CatalogVersionService catalogVersionService;
-    private Product2Facade product2Facade;
+    private CustomProductFacade customProductFacade;
 
     public void setCatalogVersionService(final CatalogVersionService catalogVersionService)
     {
         this.catalogVersionService = catalogVersionService;
     }
 
-    public void setProduct2Facade(final Product2Facade product2Facade){
-        this.product2Facade = product2Facade;
+    public void setCustomProductFacade(final CustomProductFacade customProductFacade){
+        this.customProductFacade = customProductFacade;
     }
 
     @Override
@@ -32,17 +32,17 @@ public class ProductWithFacadeController implements Controller {
         String code = request.getParameter("code");
         String name = request.getParameter("name");
         Map<String, Object> model = new HashMap<>();
-        Product2Data product2Data = null;
+        CustomProductData customProductData = null;
 
         if(code != null) {
             try {
-                product2Data = product2Facade.getProduct2Data(code, name);
+                customProductData = customProductFacade.getCustomProductData(code, name);
             } catch (UnknownIdentifierException e) {
                 model.put("error", "Product code not found");
             }
         }
 
-        model.put("product", product2Data);
+        model.put("product", customProductData);
 
         return new ModelAndView("productFacade", model);
     }

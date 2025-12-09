@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.InputStream;
 
 @SystemSetup(extension = "concerttoursSecond")
-public class Concerttours2CustomSetup {
-    private static final Logger LOG = LoggerFactory.getLogger(Concerttours2CustomSetup.class);
+public class ConcerttoursSecondCustomSetup {
+    private static final Logger LOG = LoggerFactory.getLogger(ConcerttoursSecondCustomSetup.class);
     @Autowired
     private ImportService importService;
 

@@ -1,7 +1,7 @@
-INSERT_UPDATE Band2; code[unique = true]; name
+INSERT_UPDATE CustomBand; code[unique = true]; name
                    ; SektorGaza         ; Sektor Gaza
                    ; KiSH               ; KiSH
 
-INSERT_UPDATE MusicType2; code[unique = true]
+INSERT_UPDATE CustomMusicType; code[unique = true]
                         ; Rock
                         ; Jazz

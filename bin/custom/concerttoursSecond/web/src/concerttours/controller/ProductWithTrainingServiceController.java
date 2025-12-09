@@ -1,6 +1,6 @@
 package concerttours.controller;
 
-import concerttours.model.Product2Model;
+import concerttours.model.CustomProductModel;
 import concerttours.service.TrainingProductService;
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
@@ -32,11 +32,11 @@ public class ProductWithTrainingServiceController implements Controller {
         String code = request.getParameter("code");
         String name = request.getParameter("name");
         Map<String, Object> model = new HashMap<>();
-        Product2Model product = null;
+        CustomProductModel product = null;
 
         if(code != null && name != null) {
             try {
-                product = (Product2Model) trainingProductService.getProductForCode(code, name);
+                product = (CustomProductModel) trainingProductService.getProductForCode(code, name);
             } catch (UnknownIdentifierException e) {
                 model.put("error", "Product code not found");
             }

@@ -1,6 +1,6 @@
 package concerttours.controller;
 
-import concerttours.model.Product2Model;
+import concerttours.model.CustomProductModel;
 import concerttours.service.TrainingProductService;
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.catalog.model.CatalogVersionModel;
@@ -36,7 +36,7 @@ public class ProductController {
 
                 catalogVersionService.setSessionCatalogVersions(Collections.singletonList(catalogVersionModel));
 
-                Product2Model productModel = (Product2Model) productService.getProductForCode(catalogVersionModel, code);
+                CustomProductModel productModel = (CustomProductModel) productService.getProductForCode(catalogVersionModel, code);
 
                 model.addAttribute("product", productModel);
             }catch (UnknownIdentifierException e) {

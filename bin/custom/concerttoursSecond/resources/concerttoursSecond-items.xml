@@ -16,11 +16,11 @@
 
     <enumtypes>
         <!--dynamic-->
-        <enumtype code="MusicType2" generate="true" autocreate="true" dynamic="true">
+        <enumtype code="CustomMusicType" generate="true" autocreate="true" dynamic="true">
         </enumtype>
 
         <!--non-dynamic-->
-        <enumtype code="ConcertType2" generate="true" autocreate="true" dynamic="false">
+        <enumtype code="CustomConcertType" generate="true" autocreate="true" dynamic="false">
             <value code="openair"/>
             <value code="indoor"/>
         </enumtype>
@@ -34,32 +34,32 @@
     <!--Relations-->
     <relations>
         <!--1-m-->
-        <relation code="Product2RockBand2" localized="false" generate="false" autocreate="true">
-            <sourceElement qualifier="tours2" type="Product2" collectiontype="set">
+        <relation code="CustomProduct2RockBand" localized="false" generate="false" autocreate="true">
+            <sourceElement qualifier="tours" type="CustomProduct" collectiontype="set">
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </sourceElement>
-            <targetElement qualifier="band2" type="Band2" cardinality="one">
+            <targetElement qualifier="customBand" type="CustomBand" cardinality="one">
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </targetElement>
         </relation>
 
         <!--m-n-->
-        <relation code="Band2MusicType2" localized="false" autocreate="true" generate="false">
-            <deployment table="Band2MusicType2" typecode="30369"/>
-            <sourceElement type="Band2" qualifier="bands" collectiontype="set" cardinality="many" ordered="false">
+        <relation code="CustomBand2MusicType" localized="false" autocreate="true" generate="false">
+            <deployment table="CustomBand2MusicType" typecode="30369"/>
+            <sourceElement type="CustomBand" qualifier="customBands" collectiontype="set" cardinality="many" ordered="false">
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </sourceElement>
-            <targetElement type="MusicType2" cardinality="many" qualifier="types">
+            <targetElement type="CustomMusicType" cardinality="many" qualifier="customTypes">
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </targetElement>
         </relation>
 
         <!--Relation for superItem 1-m-->
-        <relation code="SuperItem2ConcertType" localized="false">
+        <relation code="SuperItemConcertType" localized="false">
             <sourceElement type="SuperItem" qualifier="superItem" cardinality="one" ordered="false">
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </sourceElement>
-            <targetElement type="ConcertType2" qualifier="types" cardinality="many" ordered="false">
+            <targetElement type="CustomConcertType" qualifier="types" cardinality="many" ordered="false">
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </targetElement>
         </relation>
@@ -89,17 +89,17 @@
             </attributes>
         </itemtype>
 
-        <itemtype code="Product2" extends="Product" generate="true" autocreate="true">
+        <itemtype code="CustomProduct" extends="Product" generate="true" autocreate="true">
             <attributes>
-                <attribute qualifier="hashtag2" type="java.lang.String">
+                <attribute qualifier="customHashtag" type="java.lang.String">
                     <description>hashtag for sc media just for concerttoursSecond</description>
                     <persistence type="property"/>
                 </attribute>
             </attributes>
         </itemtype>
 
-        <itemtype code="Band2" generate="true" autocreate="true">
-            <deployment table="Bands2" typecode="10105"/>
+        <itemtype code="CustomBand" generate="true" autocreate="true">
+            <deployment table="CustomBands" typecode="10105"/>
             <attributes>
                 <attribute qualifier="code" type="java.lang.String">
                     <description>code of band</description>
@@ -120,7 +120,7 @@
             </attributes>
         </itemtype>
 
-        <itemtype code="Venue2" generate="true" autocreate="true">
+        <itemtype code="CustomVenue" generate="true" autocreate="true">
             <deployment table="Venue2" typecode="10102"/>
             <attributes>
                 <attribute qualifier="name" type="java.lang.String">
@@ -132,9 +132,9 @@
 
         <!--1-1 relation Venue - Concert-->
 
-        <itemtype code="Concert2" generate="true" extends="VariantProduct" autocreate="true">
+        <itemtype code="CustomConcert" generate="true" extends="VariantProduct" autocreate="true">
             <attributes>
-                <attribute qualifier="venue" type="Venue2">
+                <attribute qualifier="venue" type="CustomVenue">
                     <description>one to one Concert-Venue</description>
                     <persistence type="property"/>
                 </attribute>
@@ -142,7 +142,7 @@
                     <description>date of concert</description>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="concertType" type="ConcertType2">
+                <attribute qualifier="concertType" type="CustomConcertType">
                     <description>type of concert (indoors or open air)</description>
                     <persistence type="property"/>
                 </attribute>
@@ -158,11 +158,11 @@
                     <description>code of superItem</description>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="band" type="Band2">
+                <attribute qualifier="band" type="CustomBand">
                     <description>Just a band which we created before</description>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="musicType" type="MusicType2">
+                <attribute qualifier="musicType" type="CustomMusicType">
                     <description>Music type we created before</description>
                     <persistence type="property"/>
                 </attribute>

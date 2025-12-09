@@ -20,12 +20,12 @@
     <h1>Here is a product!</h1>
     <h1>${product.name}</h1>
     <h1>${product.hashtag}</h1>
-    <h1>${product.hashtag2}</h1>
+    <h1>${product.customHashtag}</h1>
 
-    <c:if test="${not empty product.band2}">
-        <h1>${product.band2.name}</h1>
-        <h1>${product.band2.history}</h1>
-        <h1>${product.band2.albumSales}</h1>
+    <c:if test="${not empty product.customBand}">
+        <h1>${product.customBand.name}</h1>
+        <h1>${product.customBand.history}</h1>
+        <h1>${product.customBand.albumSales}</h1>
     </c:if>
 </c:if>
 </body>
