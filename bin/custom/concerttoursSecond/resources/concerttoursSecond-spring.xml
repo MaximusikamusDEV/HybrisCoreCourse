@@ -82,5 +82,18 @@
         <property name="mediaService" ref="mediaService"/>
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
-			
+
+    <bean id="concerttoursSecondCustomSetup" class="concerttours.setup.ConcerttoursSecondCustomSetup">
+        <property name="importService" ref="importService"/>
+    </bean>
+
+    <bean id="trainingProductService"
+          class="concerttours.service.impl.DefaultTrainingProductService"
+          parent="defaultProductService"/>
+    <alias alias="productService" name="trainingProductService"/>
+
+    <bean id="defaultCustomProductFacade"
+          class="concerttours.facade.impl.DefaultCustomProductFacade">
+        <property name="trainingProductService" ref="trainingProductService"/>
+    </bean>
 </beans>
