@@ -27,8 +27,6 @@ public class ProductController {
 
     @GetMapping("/product")
     public String getProductPage(@RequestParam String code, Model model) {
-        searchRestrictionService.disableSearchRestrictions();
-
         if(code != null) {
             try {
                 CatalogVersionModel catalogVersionModel = catalogVersionService.getCatalogVersion("concertCatalog",
