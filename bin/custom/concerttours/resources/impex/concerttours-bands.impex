@@ -15,12 +15,12 @@ INSERT_UPDATE CatalogVersion; catalog(id)[unique = true]; version[unique = true]
                             ; $productCatalog           ; Online                ; true  ; en                ; employeegroup
 
 INSERT_UPDATE Media; mediaFormat(qualifier); code[unique = true]; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/jpg']; $catalogVersion
-                   ; bandList              ; rock.jpg           ; $siteResource/rock.jpg                                                      ;                             ;
-                   ; bandList              ; dance.jpg          ; $siteResource/dance.jpg                                                     ;                             ;
-                   ; bandList              ; jazz.jpg           ; $siteResource/jazz.jpg                                                      ;                             ;
-                   ; bandList              ; bigband.jpg        ; $siteResource/bigband.jpg                                                   ;                             ;
-                   ; bandList              ; ompha.jpg          ; $siteResource/ompha.jpg                                                     ;                             ;
-                   ; bandList              ; orchestra.jpg      ; $siteResource/orchestra.jpg                                                 ;                             ;
+                   ; bandList              ; rock.jpg           ; $siteResource/rock.jpg                                                      ;                            ;
+                   ; bandList              ; dance.jpg          ; $siteResource/dance.jpg                                                     ;                            ;
+                   ; bandList              ; jazz.jpg           ; $siteResource/jazz.jpg                                                      ;                            ;
+                   ; bandList              ; bigband.jpg        ; $siteResource/bigband.jpg                                                   ;                            ;
+                   ; bandList              ; ompha.jpg          ; $siteResource/ompha.jpg                                                     ;                            ;
+                   ; bandList              ; orchestra.jpg      ; $siteResource/orchestra.jpg                                                 ;                            ;
 
 
 INSERT_UPDATE MediaContainer; qualifier[unique = true]; $medias       ; $catalogVersion

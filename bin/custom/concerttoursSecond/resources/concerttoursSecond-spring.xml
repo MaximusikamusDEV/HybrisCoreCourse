@@ -95,6 +95,7 @@
     <bean id="defaultCustomProductFacade"
           class="concerttours.facade.impl.DefaultCustomProductFacade">
         <property name="trainingProductService" ref="trainingProductService"/>
+        <property name="customProductConverter" ref="customProductConverter"/>
     </bean>
 
     <bean id="senderDaysAfterSendAttributeHandler" class="concerttours.attributehandlers.SenderDaysAfterSendAttributeHandler"/>
@@ -113,5 +114,10 @@
 
     <bean id="customProductPopulator"
           class="concerttours.facade.impl.CustomProductPopulator">
+    </bean>
+
+    <bean id="customProductConverter"
+          class="concerttours.facade.impl.CustomProductConverter">
+        <property name="customProductPopulator" ref="customProductPopulator"/>
     </bean>
 </beans>
