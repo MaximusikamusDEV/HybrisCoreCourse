@@ -1,35 +1,34 @@
-# ImpEx for Importing Bands into Little Concert Tours Store
-
-# Macros / Replacement Parameter definitions
 $productCatalog = concertoursProductCatalog
 $catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Online'])[unique = true, default = $productCatalog:Online]
 $medias = medias(code, $catalogVersion)
 $siteResource = jar:concerttours.constants.ConcerttoursConstants&/concerttours/bandimages
 
-# Product catalog
 INSERT_UPDATE Catalog; id[unique = true]
                      ; $productCatalog
 
-# Product catalog version
 INSERT_UPDATE CatalogVersion; catalog(id)[unique = true]; version[unique = true]; active; languages(isoCode); readPrincipals(uid)
                             ; $productCatalog           ; Online                ; true  ; en                ; employeegroup
 
-INSERT_UPDATE Media; mediaFormat(qualifier); code[unique = true]; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/jpg']; $catalogVersion
-                   ; bandList              ; rock.jpg           ; $siteResource/rock.jpg                                                      ;                            ;
-                   ; bandList              ; dance.jpg          ; $siteResource/dance.jpg                                                     ;                            ;
-                   ; bandList              ; jazz.jpg           ; $siteResource/jazz.jpg                                                      ;                            ;
-                   ; bandList              ; bigband.jpg        ; $siteResource/bigband.jpg                                                   ;                            ;
-                   ; bandList              ; ompha.jpg          ; $siteResource/ompha.jpg                                                     ;                            ;
-                   ; bandList              ; orchestra.jpg      ; $siteResource/orchestra.jpg                                                 ;                            ;
-
-
-INSERT_UPDATE MediaContainer; qualifier[unique = true]; $medias       ; $catalogVersion
-                            ; yRockImage              ; rock.jpg      ;
-                            ; yBandImage              ; dance.jpg     ;
-                            ; yJazzImage              ; jazz.jpg      ;
-                            ; BannedImage             ; bigband.jpg   ;
-                            ; SirkenImage             ; ompha.jpg     ;
-                            ; TheChoirImage           ; orchestra.jpg ;
+INSERT_UPDATE Media; mediaFormat(qualifier); code[unique = true]; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/jpeg']; $catalogVersion
+                   ; bandList              ; rockSmall.jpg      ; $siteResource/rockSmall.jpg                                                 ;                             ;
+                   ; bandDetail            ; rockBig.jpg        ; $siteResource/rockBig.jpg                                                   ;                             ;
+                   ; bandList              ; danceSmall.jpg     ; $siteResource/danceSmall.jpg                                                ;                             ;
+                   ; bandDetail            ; danceBig.jpg       ; $siteResource/danceBig.jpg                                                  ;                             ;
+                   ; bandList              ; jazzSmall.jpg      ; $siteResource/jazzSmall.jpg                                                 ;                             ;
+                   ; bandDetail            ; jazzBig.jpg        ; $siteResource/jazzBig.jpg                                                   ;                             ;
+                   ; bandList              ; bigbandSmall.jpg   ; $siteResource/bigbandSmall.jpg                                              ;                             ;
+                   ; bandDetail            ; bigbandBig.jpg     ; $siteResource/bigbandBig.jpg                                                ;                             ;
+                   ; bandList              ; omphaSmall.jpg     ; $siteResource/omphaSmall.jpg                                                ;                             ;
+                   ; bandDetail            ; omphaBig.jpg       ; $siteResource/omphaBig.jpg                                                  ;                             ;
+                   ; bandList              ; orchestraSmall.jpg ; $siteResource/orchestraSmall.jpg                                            ;                             ;
+                   ; bandDetail            ; orchestraBig.jpg   ; $siteResource/orchestraBig.jpg                                              ;                             ;
+INSERT_UPDATE MediaContainer; qualifier[unique = true]; $medias                             ; $catalogVersion
+                            ; yRockImage              ; rockSmall.jpg,rockBig.jpg           ;
+                            ; yBandImage              ; danceSmall.jpg,danceBig.jpg         ;
+                            ; yJazzImage              ; jazzSmall.jpg,jazzBig.jpg           ;
+                            ; BannedImage             ; bigbandSmall.jpg,bigbandBig.jpg     ;
+                            ; SirkenImage             ; omphaSmall.jpg,omphaBig.jpg         ;
+                            ; TheChoirImage           ; orchestraSmall.jpg,orchestraBig.jpg ;
 
 INSERT_UPDATE Band; code[unique = true]; name      ; albumSales; image(qualifier)
                   ; A001               ; yRock     ; 1000000   ; yRockImage

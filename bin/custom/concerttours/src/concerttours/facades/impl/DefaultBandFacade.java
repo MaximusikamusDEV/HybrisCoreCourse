@@ -20,6 +20,7 @@ import java.util.Locale;
 
 public class DefaultBandFacade implements BandFacade {
     public static final String BAND_LIST_FORMAT = "band.list.format.name";
+    private static final String BAND_DETAIL_FORMAT = "band.detail.format.name";
     private MediaService mediaService;
     private BandService bandService;
     private ConfigurationService configService;
@@ -89,7 +90,7 @@ public class DefaultBandFacade implements BandFacade {
             }
         }
 
-        String mediaFormatName = configService.getConfiguration().getString(BAND_LIST_FORMAT);
+        String mediaFormatName = configService.getConfiguration().getString(BAND_DETAIL_FORMAT);
         MediaFormatModel format = mediaService.getFormat(mediaFormatName);
 
         final BandData bandData = new BandData();
