@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hybris.platform.servicelayer.config.ConfigurationService;
+import de.hybris.platform.servicelayer.i18n.I18NService;
 import de.hybris.platform.servicelayer.media.MediaService;
 import concerttours.data.BandData;
 import concerttours.data.TourSummaryData;
@@ -24,6 +25,7 @@ public class DefaultBandFacade implements BandFacade {
     private MediaService mediaService;
     private BandService bandService;
     private ConfigurationService configService;
+    private I18NService i18NService;
 
     public void setBandService(final BandService bandService) {
         this.bandService = bandService;
@@ -37,6 +39,10 @@ public class DefaultBandFacade implements BandFacade {
         this.configService = configService;
     }
 
+    public void setI18NService(I18NService i18NService) {
+        this.i18NService = i18NService;
+    }
+
     @Override
     public List<BandData> getBands() {
         final List<BandModel> bandModels = bandService.getBands();
@@ -48,11 +54,13 @@ public class DefaultBandFacade implements BandFacade {
             String mediaFormatName = configService.getConfiguration().getString(BAND_LIST_FORMAT);
             MediaFormatModel format = mediaService.getFormat(mediaFormatName);     //version with Properties
 
+            Locale locale = i18NService.getCurrentLocale();
+
             for (final BandModel sm : bandModels) {
                 final BandData sfd = new BandData();
                 sfd.setId(sm.getCode());
                 sfd.setName(sm.getName());
-                sfd.setDescription(sm.getHistory());
+                sfd.setDescription(sm.getHistory(locale));
                 sfd.setAlbumsSold(sm.getAlbumSales());
                 sfd.setImageURL(getImageUrl(sm, format));
                 bandFacadeData.add(sfd);
@@ -79,12 +87,13 @@ public class DefaultBandFacade implements BandFacade {
             }
         }
 
+        Locale locale = i18NService.getCurrentLocale();
         final List<TourSummaryData> tourHistory = new ArrayList<>();
         if (band.getTours() != null) {
             for (final ProductModel tour : band.getTours()) {
                 final TourSummaryData summary = new TourSummaryData();
                 summary.setId(tour.getCode());
-                summary.setTourName(tour.getName(Locale.ENGLISH));
+                summary.setTourName(tour.getName(locale));
                 summary.setNumberOfConcerts(Integer.toString(tour.getVariants().size()));
                 tourHistory.add(summary);
             }
@@ -97,7 +106,7 @@ public class DefaultBandFacade implements BandFacade {
         bandData.setId(band.getCode());
         bandData.setName(band.getName());
         bandData.setAlbumsSold(band.getAlbumSales());
-        bandData.setDescription(band.getHistory());
+        bandData.setDescription(band.getHistory(locale));
         bandData.setGenres(genres);
         bandData.setTours(tourHistory);
         bandData.setImageURL(getImageUrl(band, format));

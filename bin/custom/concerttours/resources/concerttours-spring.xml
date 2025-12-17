@@ -29,6 +29,7 @@
         <property name="bandService" ref = "bandService" />
         <property name="mediaService" ref="mediaService"/>
         <property name="configurationService" ref="configurationService"/>
+        <property name="i18NService" ref="i18NService"/>
     </bean>
 
     <alias name = "defaultTourFacade" alias = "tourFacade" />
