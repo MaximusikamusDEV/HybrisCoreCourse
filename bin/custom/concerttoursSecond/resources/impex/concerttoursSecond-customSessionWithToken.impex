@@ -1,0 +1,4 @@
+INSERT_UPDATE CustomSession; token[unique=true]
+                           ; TOKEN_1
+
+

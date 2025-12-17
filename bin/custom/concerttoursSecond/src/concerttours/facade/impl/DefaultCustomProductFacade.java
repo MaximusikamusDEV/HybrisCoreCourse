@@ -7,6 +7,11 @@ import concerttours.service.TrainingProductService;
 
 public class DefaultCustomProductFacade implements CustomProductFacade {
     private TrainingProductService trainingProductService;
+    private CustomProductConverter customProductConverter;
+
+    public void setCustomProductConverter(CustomProductConverter customProductConverter) {
+        this.customProductConverter = customProductConverter;
+    }
 
     public void setTrainingProductService(TrainingProductService trainingProductService) {
         this.trainingProductService = trainingProductService;
@@ -14,13 +19,10 @@ public class DefaultCustomProductFacade implements CustomProductFacade {
 
     @Override
     public CustomProductData getCustomProductData(String code, String name) {
-        CustomProductModel productModel = (CustomProductModel) trainingProductService.getProductForCode(code, name);
-        CustomProductData customProductData = new CustomProductData();
+        CustomProductModel customProductModel = (CustomProductModel) trainingProductService.getProductForCode(code, name);
+        CustomProductData customProductData;
 
-        customProductData.setId(productModel.getCode());
-        customProductData.setName(productModel.getName());
-        customProductData.setCatalogVersion(productModel.getCatalogVersion().toString());
-        customProductData.setFinalHashtag(productModel.getHashtag().concat(productModel.getCustomHashtag()));
+        customProductData = customProductConverter.convert(customProductModel);
 
         return customProductData;
     }

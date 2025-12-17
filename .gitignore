@@ -7,9 +7,10 @@
 /config/**
 !/config/local.properties
 !/config/localextesions.xml
-/bin/custom/**/web/**
+/bin/custom/**/web/webroot/WEB-INF/config/
+/bin/custom/**/web/webroot/WEB-INF/lib/
 /bin/custom/**/gensrc/**
-/bin/custom/**/testsrc/**
+!/bin/custom/**/testsrc/**
 
 **/.externalToolBuilders
 **/.idea

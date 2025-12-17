@@ -1,0 +1,7 @@
+INSERT_UPDATE CustomBand; code[unique = true]; name[lang = en]; name[lang = ru]
+                        ; SektorGaza         ; Sektor Gaza; Сектор газа
+                        ; KiSH               ; KiSH; Король и шут
+
+INSERT_UPDATE CustomMusicType; code[unique = true]
+                             ; Rock
+                             ; Jazz

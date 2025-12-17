@@ -40,8 +40,9 @@
 
 <c:if test="${not empty contactRequest}">
     <h2>Contact Request Details</h2>
-    <p><strong>Sender:</strong> ${contactRequest.sender}</p>
-    <p><strong>Message:</strong> ${contactRequest.message}</p>
+    <p><strong>Sender: </strong> ${contactRequest.sender}</p>
+    <p><strong>Message: </strong> ${contactRequest.message}</p>
+    <p><strong>Days after send: </strong> ${contactRequest.daysAfterSend}</p>
 </c:if>
 </body>
 </html>

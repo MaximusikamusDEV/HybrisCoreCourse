@@ -63,5 +63,4 @@
         <property name="customProductFacade" ref="defaultCustomProductFacade"/>
         <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
-
 </beans>

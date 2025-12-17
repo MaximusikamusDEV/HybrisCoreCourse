@@ -2,6 +2,7 @@ package concerttours.facades.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import de.hybris.bootstrap.annotations.IntegrationTest;
+import de.hybris.platform.impex.jalo.ImpExException;
 import de.hybris.platform.servicelayer.ServicelayerTransactionalTest;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.model.ModelService;
@@ -31,13 +32,14 @@ public class DefaultBandFacadeIntegrationTest extends ServicelayerTransactionalT
     private static final String BAND_HISTORY = "New contemporary, 7-piece Jaz unit from London, formed in 2015";
     private static final Long ALBUMS_SOLD = Long.valueOf(10L);
     @Before
-    public void setUp()
-    {
+    public void setUp() throws ImpExException {
         try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(1));
             new JdbcTemplate(Registry.getCurrentTenant().getDataSource()).execute("CHECKPOINT");
             Thread.sleep(TimeUnit.SECONDS.toMillis(1));
         } catch (InterruptedException exc) {}
+
+        importCsv("/impex/essentialdata-mediaformats.impex", "UTF-8");
 
         bandModel = modelService.create(BandModel.class);
         bandModel.setCode(BAND_CODE);
