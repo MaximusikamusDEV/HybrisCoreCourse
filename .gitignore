@@ -6,7 +6,7 @@
 /data/**
 /config/**
 !/config/local.properties
-!/config/localextesions.xml
+!/config/localextensions.xml
 /bin/custom/**/web/webroot/WEB-INF/config/
 /bin/custom/**/web/webroot/WEB-INF/lib/
 /bin/custom/**/gensrc/**
