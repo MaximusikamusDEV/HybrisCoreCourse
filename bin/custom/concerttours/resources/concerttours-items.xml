@@ -111,7 +111,24 @@
 
         <itemtype code="News" generate="true" autocreate="true">
             <deployment table="News" typecode="30270"/>
+            <custom-properties>
+                <property name="catalogItemType">
+                    <value>Boolean.TRUE</value>
+                </property>
+                <property name="catalogVersionAttributeQualifier">
+                    <value>"catalogVersion"</value>
+                </property>
+                <property name="uniqueKeyAttributeQualifier">
+                    <value>"code,catalogVersion"</value>
+                </property>
+            </custom-properties>
+
             <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>Code of itemtype</description>
+                    <modifiers read="true" write="true" search="true" unique="true"/>
+                    <persistence type="property"/>
+                </attribute>
                 <attribute qualifier="date" type="java.util.Date">
                     <description>Date of news item</description>
                     <persistence type="property"/>
@@ -122,6 +139,10 @@
                 </attribute>
                 <attribute qualifier="content" type="java.lang.String">
                     <description>Content of the news item</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="catalogVersion" type="CatalogVersion">
+                    <modifiers read="true" write="false" search="true" optional="false" initial="true" unique="true"/>
                     <persistence type="property"/>
                 </attribute>
             </attributes>
