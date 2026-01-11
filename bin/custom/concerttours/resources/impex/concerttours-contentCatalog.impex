@@ -1,0 +1,8 @@
+$contentCatalog = concerttoursNewsContentCatalog
+
+INSERT_UPDATE Catalog; id[unique = true]
+                     ; $contentCatalog
+
+INSERT_UPDATE CatalogVersion; catalog(id)[unique = true]; version[unique = true]; active; languages(isoCode); readPrincipals(uid)
+                            ; $contentCatalog ; Online ; true  ; en ; employeegroup
+                            ; $contentCatalog ; Staged ; false ; en ; admingroup

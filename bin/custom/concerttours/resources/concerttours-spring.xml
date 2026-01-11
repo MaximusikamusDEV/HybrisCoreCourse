@@ -52,6 +52,7 @@
 
     <bean id="concerttoursListener" class="concerttours.events.NewBandEventListener">
         <property name="modelService" ref="modelService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 
     <bean id="bandAlbumSalesInterceptor" class="concerttours.interceptors.BandAlbumSalesInterceptor"/>
