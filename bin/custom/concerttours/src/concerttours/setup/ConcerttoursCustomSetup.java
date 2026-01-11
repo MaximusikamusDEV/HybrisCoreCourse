@@ -40,6 +40,7 @@ public class ConcerttoursCustomSetup {
         impexImport("/impex/concerttours-bands-en.impex");
         impexImport("/impex/concerttours-bands-de.impex");
         impexImport("/impex/concerttours-yBandTour.impex");
+        impexImport("/impex/concerttours-producers.impex");
         LOG.info("Custom project data loading for the Concerttours extension completed.");
         return true;
     }

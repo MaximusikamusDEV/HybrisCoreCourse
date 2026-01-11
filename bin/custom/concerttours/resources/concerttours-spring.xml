@@ -26,11 +26,10 @@
 
     <alias name = "defaultBandFacade" alias = "bandFacade" />
     <bean id = "defaultBandFacade" class ="concerttours.facades.impl.DefaultBandFacade" >
-        <property name="bandService" ref = "bandService" />
-        <property name="mediaService" ref="mediaService"/>
-        <property name="configurationService" ref="configurationService"/>
-        <property name="i18NService" ref="i18NService"/>
-    </bean>
+        <property name="bandDetailConverter" ref="bandDetailConverter"/>
+        <property name="bandListConverter" ref="bandListConverter"/>
+        <property name="bandService" ref="bandService"/>
+     </bean>
 
     <alias name = "defaultTourFacade" alias = "tourFacade" />
     <bean id = "defaultTourFacade" class ="concerttours.facades.impl.DefaultTourFacade" >
@@ -75,5 +74,43 @@
     <bean id="sendNewsJob" class="concerttours.jobs.SendNewsJob" parent="abstractJobPerformable">
         <property name="newsService" ref="newsService" />
         <property name="configurationService" ref="configurationService" />
+    </bean>
+
+    <bean id="bandDetailImageUrlPopulator" class="concerttours.populators.BandImageUrlPopulator">
+        <property name="configService" ref="configurationService"/>
+        <property name="formatPropertyKey" value="band.detail.format.name"/>
+        <property name="mediaService" ref="mediaService"/>
+    </bean>
+
+    <bean id="bandListImageUrlPopulator" class="concerttours.populators.BandImageUrlPopulator">
+        <property name="configService" ref="configurationService"/>
+        <property name="formatPropertyKey" value="band.list.format.name"/>
+        <property name="mediaService" ref="mediaService"/>
+    </bean>
+
+    <bean id="producerPopulator" class="concerttours.populators.ProducerPopulator"/>
+
+    <bean id="producerConverter" class="concerttours.convertors.ProducerConverter">
+        <property name="producerPopulator" ref="producerPopulator"/>
+    </bean>
+
+    <bean id="bandDetailPopulator" class="concerttours.populators.BandDetailPopulator">
+        <property name="producerConverter" ref="producerConverter"/>
+        <property name="i18NService" ref="i18nService"/>
+    </bean>
+
+    <bean id="bandDetailConverter" class="concerttours.convertors.BandDetailConverter">
+        <property name="bandImageUrlPopulator" ref="bandDetailImageUrlPopulator"/>
+        <property name="bandDetailPopulator" ref="bandDetailPopulator"/>
+    </bean>
+
+    <bean id="bandListPopulator" class="concerttours.populators.BandListPopulator">
+        <property name="i18NService" ref="i18nService"/>
+        <property name="producerConverter" ref="producerConverter"/>
+    </bean>
+
+    <bean id="bandListConverter" class="concerttours.convertors.BandListConverter">
+        <property name="bandImageUrlPopulator" ref="bandListImageUrlPopulator"/>
+        <property name="bandListPopulator" ref="bandListPopulator"/>
     </bean>
 </beans>

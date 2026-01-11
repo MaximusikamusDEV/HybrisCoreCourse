@@ -38,6 +38,16 @@
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </targetElement>
         </relation>
+
+        <relation code="Producers2Bands" localized="false" autocreate="true" generate="false">
+            <deployment table="Producers2Bands" typecode="31270"/>
+            <sourceElement type="Producer" qualifier="producers" collectiontype="set" cardinality="many" ordered="false">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </sourceElement>
+            <targetElement type="Band" qualifier="bands" collectiontype="set" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </targetElement>
+        </relation>
     </relations>
 
     <itemtypes>
@@ -125,6 +135,33 @@
                     <defaultvalue>
                         concerttours.constraints.NotLoremIpsum.class
                     </defaultvalue>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Producer" autocreate="true" generate="true">
+            <deployment table="Producer" typecode="10108"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>Unique code of producer</description>
+                    <modifiers read="true" write="true" search="true" unique="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <modifiers read="true" write="true" search="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="secondName" type="java.lang.String">
+                    <modifiers read="true" write="true" search="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="age" type="java.lang.Integer">
+                    <modifiers read="true" write="true" search="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="cost" type="java.lang.Long">
+                    <modifiers read="true" write="true" search="true"/>
+                    <persistence type="property"/>
                 </attribute>
             </attributes>
         </itemtype>
