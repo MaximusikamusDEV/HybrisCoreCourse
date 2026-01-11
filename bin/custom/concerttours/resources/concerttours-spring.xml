@@ -82,10 +82,8 @@
         <property name="mediaService" ref="mediaService"/>
     </bean>
 
-    <bean id="bandListImageUrlPopulator" class="concerttours.populators.BandImageUrlPopulator">
-        <property name="configService" ref="configurationService"/>
+    <bean id="bandListImageUrlPopulator" parent="bandDetailImageUrlPopulator">
         <property name="formatPropertyKey" value="band.list.format.name"/>
-        <property name="mediaService" ref="mediaService"/>
     </bean>
 
     <bean id="producerPopulator" class="concerttours.populators.ProducerPopulator"/>

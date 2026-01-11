@@ -3,11 +3,11 @@ INSERT_UPDATE Producer; code[unique = true]; name; secondName
                       ; P002               ; Cod ; Tas
                       ; P003               ; Hyb ; Ris
 
-UPDATE Band; code[unique = true]; producers(code)
-           ; A001               ; P001
-           ; A002               ; P001
-           ; A003               ; P001
-           ; A004               ; P002
-           ; A005               ; P002
-           ; A006               ; P002
-           ; A007               ; P003
+INSERT_UPDATE Band; code[unique = true]; producers(code)
+                  ; A001               ; P001,P002
+                  ; A002               ; P001,P003
+                  ; A003               ; P001,P002
+                  ; A004               ; P002,P001
+                  ; A005               ; P002,P001,P003
+                  ; A006               ; P002
+                  ; A007               ; P003
